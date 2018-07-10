@@ -27,7 +27,8 @@ PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 #Bootanimation res
-TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_SCREEN_HEIGHT := 1080
+TARGET_SCREEN_WIDTH := 1080
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -125,7 +126,7 @@ PRODUCT_PACKAGES += \
 
 # Charging
 PRODUCT_PACKAGES += \
-    charger_res_images
+    omni_charger_res_images
 
 # Configstore
 PRODUCT_PACKAGES += \
@@ -134,6 +135,10 @@ PRODUCT_PACKAGES += \
 # Camera-face detection
 PRODUCT_PACKAGES += \
     com.qualcomm.qti.camera
+
+# Device Settings
+PRODUCT_PACKAGES += \
+XiaomiParts
 
 # Display
 PRODUCT_PACKAGES += \
