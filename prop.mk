@@ -2,6 +2,13 @@
 # system.prop for msm8953-common
 #
 
+# ADB at boot
+PRODUCT_PROPERTY_OVERRIDES += \
+persist.service.adb.enable=1 \
+persist.service.debuggable=1 \
+persist.sys.usb.config=mtp,adb \
+ro.adb.secure=0
+
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
 af.fast_track_multiplier=2 \
@@ -79,6 +86,14 @@ persist.hwc.mdpcomp.enable=true \
 ro.opengles.version=196610 \
 ro.qualcomm.cabl=0 \
 ro.sf.lcd_density=320
+
+# Display power reduction (FOSS)
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.qcom.dpps.sensortype=3 \
+ro.qualcomm.display.paneltype=1 \
+ro.qualcomm.foss=1 \
+config.foss.xml=1 \
+config.foss.path=/vendor/etc/FOSSConfig.xml
 
 # DRM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -169,9 +184,11 @@ ril.subscription.types=NV,RUIM \
 rild.libargs=-d/dev/smd0 \
 rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
 ro.telephony.call_ring.multiple=false \
-ro.telephony.default_network=22,20 \
+ro.telephony.default_network=22,20,9,1 \
+ro.ril.def.preferred.network=1,9,20,22 \
 service.qti.ims.enabled=1 \
-telephony.lteOnCdmaDevice=1
+telephony.lteOnCdmaDevice=1 \
+telephony.lteOnGsmDevice=1
 
 # Time Services
 PRODUCT_PROPERTY_OVERRIDES += \
