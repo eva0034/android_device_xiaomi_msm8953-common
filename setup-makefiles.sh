@@ -41,6 +41,7 @@ write_headers "mido tissot"
 
 # The standard common blobs
 write_makefiles "$MY_DIR"/proprietary-files-qc.txt true
+echo "" >> "$PRODUCTMK"
 
 # We are done!
 write_footers
