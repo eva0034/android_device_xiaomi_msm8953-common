@@ -97,7 +97,6 @@ TARGET_TS_MAKEUP := true
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
-BOARD_HEALTHD_CUSTOM_CHARGER_RES := $(VENDOR_PATH)/charger/images
 
 # CNE / DPM
 BOARD_USES_QCNE := true
@@ -136,7 +135,7 @@ SF_VSYNC_EVENT_PHASE_OFFSET_NS := 6000000
 VSYNC_EVENT_PHASE_OFFSET_NS := 2000000
 
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
-#USE_OPENGL_RENDERER := true
+USE_OPENGL_RENDERER := true
 
 # Filesystem
 TARGET_USERIMAGES_USE_F2FS := true
@@ -163,9 +162,6 @@ DEVICE_MATRIX_FILE   := $(VENDOR_PATH)/compatibility_matrix.xml
 #HWUI
 HWUI_COMPILE_FOR_PERF := true
 
-# Security patch level
-VENDOR_SECURITY_PATCH := 2018-10-05
-
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm8953
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
@@ -184,14 +180,15 @@ TARGET_PROVIDES_LIBLIGHT := true
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true
 
-#Nightlight
-#TARGET_USES_C2D_COMPOSITION := true
-
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3221225472
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
+BOARD_ROOT_EXTRA_SYMLINKS := \
+    /vendor/dsp:/dsp \
+    /vendor/firmware_mnt:/firmware \
+    /mnt/vendor/persist:/persist
 TARGET_USES_MKE2FS := true
 
 # Peripheral manager
@@ -199,7 +196,7 @@ TARGET_PER_MGR_ENABLED := true
 
 # Power
 TARGET_HAS_NO_WIFI_STATS := true
-TARGET_USES_INTERACTION_BOOST := true
+#TARGET_USES_INTERACTION_BOOST := true
 
 # Qualcomm
 BOARD_USES_QCOM_HARDWARE := true
@@ -220,13 +217,6 @@ endif
 # SELinux
 #include device/qcom/sepolicy/sepolicy.mk
 #BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy
-
-BOARD_SEPOLICY_VERS := 28.0
-
-
-
-# Security patch level
-VENDOR_SECURITY_PATCH := 2018-07-01
 
 #Enable DRM plugins 64 bit compilation
 TARGET_ENABLE_MEDIADRM_64 := true

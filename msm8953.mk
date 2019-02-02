@@ -20,25 +20,13 @@ $(call inherit-product, vendor/xiaomi/msm8953-common/msm8953-common-vendor.mk)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
-
-#PRODUCT_ENFORCE_RRO_TARGETS := \
-    Bluetooth \
-    Settings \
-    SettingsProvider \
-    SystemUI \
-    framework-res \
-
-PRODUCT_ENFORCE_RRO_TARGETS := \
-    framework-res \
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
-# Boot animation
-TARGET_SCREEN_HEIGHT := 1920
-TARGET_SCREEN_WIDTH := 1080
+#Bootanimation res
+TARGET_BOOT_ANIMATION_RES := 1080
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -83,9 +71,9 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    android.hardware.audio@2.0-impl \
+    android.hardware.audio@4.0-impl \
     android.hardware.audio@2.0-service \
-    android.hardware.audio.effect@2.0-impl \
+    android.hardware.audio.effect@4.0-impl \
     android.hardware.audio.effect@2.0-service \
     android.hardware.soundtrigger@2.1-impl \
     android.hardware.soundtrigger@2.1-service \
@@ -94,6 +82,7 @@ PRODUCT_PACKAGES += \
     audio.primary.msm8953 \
     audio.r_submix.default \
     audio.usb.default \
+    libaacwrapper \
     libaudio-resampler \
     libqcomvisualizer \
     libqcomvoiceprocessing \
@@ -123,10 +112,6 @@ PRODUCT_PACKAGES += \
     AntHalService \
     com.dsi.ant.antradio_library
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.media_vol_steps=25 \
-    ro.config.vc_call_vol_steps=7
-
 # Camera
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
@@ -140,11 +125,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     MGC \
-
-
-# Charging
-PRODUCT_PACKAGES += \
-    charger_res_images
 
 # Configstore
 PRODUCT_PACKAGES += \
@@ -177,7 +157,7 @@ PRODUCT_PACKAGES += \
 
 # Doze mode
 PRODUCT_PACKAGES += \
-    Doze
+    XiaomiDoze
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -307,8 +287,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.0-impl \
-    android.hardware.power@1.0-service
+    android.hardware.power@1.1-service-qti
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
@@ -404,8 +383,8 @@ PRODUCT_PACKAGES += \
 
 # Whitelisted app
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
-
+    $(LOCAL_PATH)/configs/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml \
+    $(LOCAL_PATH)/permissions/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml
 # VR
 PRODUCT_PACKAGES += \
     vr.msm8953
@@ -435,3 +414,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
 
+# Wi-Fi Display
+PRODUCT_BOOT_JARS += \
+    WfdCommon
